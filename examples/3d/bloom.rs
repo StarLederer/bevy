@@ -30,11 +30,16 @@ fn setup_scene(
             transform: Transform::from_xyz(-2.0, 2.5, 5.0).looking_at(Vec3::ZERO, Vec3::Y),
             ..default()
         },
-        BloomSettings::default(), // 2. Enable bloom for the camera
+        BloomSettings {
+            threshold: 0.0,
+            knee: 0.0,
+            intensity: 0.5,
+            ..default()
+        }, // 2. Enable bloom for the camera
     ));
 
     let material_emissive = materials.add(StandardMaterial {
-        emissive: Color::rgb_linear(5.2, 1.2, 0.8), // 3. Set StandardMaterial::emissive using Color::rgb_linear, for entities we want to apply bloom to
+        emissive: Color::rgb_linear(8000.0, 100.0, 0.8), // 3. Set StandardMaterial::emissive using Color::rgb_linear, for entities we want to apply bloom to
         ..default()
     });
     let material_non_emissive = materials.add(StandardMaterial {
